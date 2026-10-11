@@ -6,9 +6,5 @@ public class Attacker extends Player{
         super(name, x, y);
     }
 
-    @Override 
-    public void shoot(){
-        System.out.println("je tire : "+this.getClass().getSimpleName()+" "+this.getNom());
-    }
 
 }

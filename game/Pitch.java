@@ -3,8 +3,8 @@ package game;
 import java.awt.Point;
 
 public class Pitch {
-    int longueur = 1000;
-    int largeur = 600;
+    int longueur = 1400;
+    int largeur = 800;
     int marge = 100;
     int hauteurCage = 140;
     Cages gauche;
@@ -23,7 +23,15 @@ public class Pitch {
                 new Point(xDroit, centreY + hauteurCage / 2));
     }
 
-    public int getHauteurCage(){
+    public int getCentreX() {
+        return marge + longueur / 2;
+    }
+
+    public int getCentreY() {
+        return marge + largeur / 2;
+    }
+
+    public int getHauteurCage() {
         return this.hauteurCage;
     }
 

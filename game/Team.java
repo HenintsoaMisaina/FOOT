@@ -3,24 +3,28 @@ package game;
 import player.*;
 
 public class Team {
-    String teamName;
+    String nom;
     Player[] players;
     int goals;
  
     public Team(){};
 
     public Team(String nom, Player[] pl){
-        this.teamName = nom;
+        this.nom = nom;
         this.players = pl;
         goals=0;
     }
 
-    public String getTeamName(){
-        return this.teamName;
+    public Player[] getPlayers(){
+        return this.players;
     }
 
-    public void setTeamName(String nom){
-        this.teamName = nom;
+    public String getNom(){
+        return this.nom;
+    }
+
+    public void setNom(String nom){
+        this.nom = nom;
     }
 
     public int getGoals(){
@@ -29,5 +33,9 @@ public class Team {
 
     public void setGoals(int g){
         this.goals = g;
+    }
+
+    public void incrementGoals(){
+        goals++;
     }
 }
