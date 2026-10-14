@@ -1,12 +1,14 @@
 package player;
 
 import java.awt.Point;
+import java.security.PublicKey;
+
 import game.Ball;
 
 public abstract class Player {
     String nom;
     Point position;
-    Double puissance = 12.0;
+    Double puissance;
     Double portee = 25.0;
 
     public Player() {
@@ -68,32 +70,8 @@ public abstract class Player {
 
     }
 
-    public void clamp(int minX, int maxX, int minY, int maxY) {
-        if (position.x < minX)
-            position.x = minX;
-        if (position.x > maxX)
-            position.x = maxX;
-        if (position.y < minY)
-            position.y = minY;
-        if (position.y > maxY)
-            position.y = maxY;
-    }
+    public abstract boolean shoot(Ball ball); 
 
-    public boolean shoot(Ball ball) {
-
-        if (ball.isMoving()) {
-            return false;
-        }
-
-        double dx = ball.getX() - position.x;
-        double dy = ball.getY() - position.y;
-        double dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist > portee || dist == 0) {
-            return false;
-        }
-
-        ball.setVelocite(dx / dist * puissance, dy / dist * puissance);
-        return true;
-    };
+    public abstract boolean tacle(Player p);
 
 }

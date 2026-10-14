@@ -11,6 +11,7 @@ public class ControlListener extends KeyAdapter implements FocusListener {
     volatile boolean left;
     volatile boolean right;
     volatile boolean shoot;
+    volatile boolean tacle;
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -27,8 +28,10 @@ public class ControlListener extends KeyAdapter implements FocusListener {
         } else if (KeyEvent.VK_RIGHT == code) {
             right = true;
             // System.out.println("right");
-        } else if (KeyEvent.VK_SPACE == code){
+        } else if (KeyEvent.VK_SPACE == code) {
             shoot = true;
+        } else if (KeyEvent.VK_T == code) {
+            tacle = true;
         }
     }
 
@@ -71,9 +74,15 @@ public class ControlListener extends KeyAdapter implements FocusListener {
         return right;
     }
 
-    public boolean consumeShoot(){
+    public boolean consumeShoot() {
         boolean valeur = shoot;
         shoot = false;
+        return valeur;
+    }
+
+    public boolean consumeTacle() {
+        boolean valeur = tacle;
+        tacle = false;
         return valeur;
     }
 }

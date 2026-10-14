@@ -42,6 +42,19 @@ public class Renderer extends JPanel {
         drawPlayers(g2d);
         drawBall(g2d);
         drawScore(g2d);
+        drawChrono(g2d);
+    }
+
+    private void drawChrono(Graphics2D g2d) {
+        Chrono c = match.getChrono();
+        String texte = c.getAffichage();
+        if (c.isTermine())
+            texte += "  FIN";
+
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(new Font("Arial", Font.BOLD, 28));
+        int largeur = g2d.getFontMetrics().stringWidth(texte);
+        g2d.drawString(texte, match.getPitch().getCentreX() - largeur / 2, 60);
     }
 
     private void drawScore(Graphics2D g2d) {
@@ -65,17 +78,17 @@ public class Renderer extends JPanel {
         int nbBande = 14;
         int largeurBande = terrain.getLongueur() / nbBande;
 
-        // g2d.setColor(VERT_CLAIR);
-        // g2d.fillRect(terrain.getMarge() , terrain.getMarge() ,
-        // terrain.getLongueur() ,
-        // terrain.getLargeur() );
+        g2d.setColor(VERT_CLAIR);
+        g2d.fillRect(terrain.getMarge(), terrain.getMarge(),
+                terrain.getLongueur(),
+                terrain.getLargeur());
 
-        for (int i = 0; i < nbBande; i++) {
-            g2d.setColor(i % 2 == 0 ? VERT_CLAIR : VERT_FONCE);
-            g2d.fillRect(terrain.getMarge() + i * largeurBande, terrain.getMarge(),
-                    largeurBande,
-                    terrain.getLargeur());
-        }
+        // for (int i = 0; i < nbBande; i++) {
+        // g2d.setColor(i % 2 == 0 ? VERT_CLAIR : VERT_FONCE);
+        // g2d.fillRect(terrain.getMarge() + i * largeurBande, terrain.getMarge(),
+        // largeurBande,
+        // terrain.getLargeur());
+        // }
 
         g2d.setColor(Color.white);
         g2d.setStroke(new BasicStroke(3));
@@ -190,6 +203,10 @@ public class Renderer extends JPanel {
 
         if (control.consumeShoot()) {
             match.shoot(p);
+        }
+
+        if (control.consumeTacle()) {
+            match.tacle(p);
         }
 
         int vitesse = 4;
